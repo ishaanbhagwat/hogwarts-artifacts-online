@@ -1,6 +1,7 @@
 package edu.tcu.cs.hogwartsartifactsonline.artifact;
 
 import edu.tcu.cs.hogwartsartifactsonline.system.Result;
+import edu.tcu.cs.hogwartsartifactsonline.system.StatusCode;
 import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ public class ArtifactController {
 
     @GetMapping("/api/v1/artifacts/{artifactId}")
     public Result findArtifactById(@PathVariable String artifactId){
-        return null;
+        Artifact foundArtifact = this.artifactService.findById(artifactId);
+        return new Result(true, StatusCode.SUCCESS, "Find One Success", foundArtifact);
     }
 }
