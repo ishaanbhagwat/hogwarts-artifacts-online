@@ -13,8 +13,9 @@ public class ArtifactDtoToArtifactConverter implements Converter<ArtifactDto, Ar
         Artifact artifact = new Artifact();
         artifact.setId(source.id());
         artifact.setName(source.name());
-        artifact.setDesc(source.description());
+        artifact.setDescription(source.description());
         artifact.setImageUrl(source.imageUrl());
         return artifact;
     }
+
 }
