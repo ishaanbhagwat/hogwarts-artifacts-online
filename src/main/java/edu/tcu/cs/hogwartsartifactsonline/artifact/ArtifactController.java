@@ -76,6 +76,16 @@ public class ArtifactController {
         return new Result(true, StatusCode.SUCCESS, "Delete Success");
     }
 
+    @GetMapping("/summary")
+    public Result summarizeArtifacts() throws JsonProcessingException {
+        List<Artifact> foundArtifacts = this.artifactService.findAll();
+        // Convert foundArtifacts to a list of artifactDtos
+        List<ArtifactDto> artifactDtos = foundArtifacts.stream()
+                .map(this.artifactToArtifactDtoConverter::convert)
+                .collect(Collectors.toList());
+        String artifactSummary = this.artifactService.summarize(artifactDtos);
+        return new Result(true, StatusCode.SUCCESS, "Summarize Success", artifactSummary);
+    }
 
     @PostMapping("/search")
     public Result findArtifactsByCriteria(@RequestBody Map<String, String> searchCriteria, Pageable pageable) {
