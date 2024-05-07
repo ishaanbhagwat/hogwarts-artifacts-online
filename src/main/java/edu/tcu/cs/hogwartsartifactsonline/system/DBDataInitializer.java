@@ -2,10 +2,10 @@ package edu.tcu.cs.hogwartsartifactsonline.system;
 
 import edu.tcu.cs.hogwartsartifactsonline.artifact.Artifact;
 import edu.tcu.cs.hogwartsartifactsonline.artifact.ArtifactRepository;
-import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
-import edu.tcu.cs.hogwartsartifactsonline.wizard.WizardRepository;
 import edu.tcu.cs.hogwartsartifactsonline.hogwartsuser.HogwartsUser;
 import edu.tcu.cs.hogwartsartifactsonline.hogwartsuser.UserService;
+import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
+import edu.tcu.cs.hogwartsartifactsonline.wizard.WizardRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -15,8 +15,11 @@ import org.springframework.stereotype.Component;
 public class DBDataInitializer implements CommandLineRunner {
 
     private final ArtifactRepository artifactRepository;
+
     private final WizardRepository wizardRepository;
+
     private final UserService userService;
+
 
     public DBDataInitializer(ArtifactRepository artifactRepository, WizardRepository wizardRepository, UserService userService) {
         this.artifactRepository = artifactRepository;
@@ -79,6 +82,12 @@ public class DBDataInitializer implements CommandLineRunner {
         w3.setName("Neville Longbottom");
         w3.addArtifact(a5);
 
+        wizardRepository.save(w1);
+        wizardRepository.save(w2);
+        wizardRepository.save(w3);
+
+        artifactRepository.save(a6);
+
         // Create some users.
         HogwartsUser u1 = new HogwartsUser();
         u1.setId(1);
@@ -104,14 +113,6 @@ public class DBDataInitializer implements CommandLineRunner {
         this.userService.save(u1);
         this.userService.save(u2);
         this.userService.save(u3);
-
-        wizardRepository.save(w1);
-        wizardRepository.save(w2);
-        wizardRepository.save(w3);
-
-        artifactRepository.save(a6);
-
-
     }
 
 }
