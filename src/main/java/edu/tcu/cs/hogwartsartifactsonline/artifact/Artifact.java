@@ -9,13 +9,19 @@ import java.io.Serializable;
 
 @Entity
 public class Artifact implements Serializable {
+
     @Id
     private String id;
+
     private String name;
-    private String desc;
+
+    private String description;
+
     private String imageUrl;
+
     @ManyToOne
     private Wizard owner;
+
 
     public Artifact() {
     }
@@ -36,12 +42,12 @@ public class Artifact implements Serializable {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImageUrl() {
@@ -59,4 +65,5 @@ public class Artifact implements Serializable {
     public void setOwner(Wizard owner) {
         this.owner = owner;
     }
+
 }
